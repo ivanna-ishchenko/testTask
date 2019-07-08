@@ -1,14 +1,42 @@
-let selectCountry = document.getElementById("exampleFormControlSelect1");
-let selectState = document.getElementById("exampleFormControlSelect2");
-let selectCity = document.getElementById("exampleFormControlSelect3");
-let url = 'http://192.168.1.188:3000/';
-
+let selectCountry = document.getElementById("formControlSelect1");
+let selectState = document.getElementById("formControlSelect2");
+let selectCity = document.getElementById("formControlSelect3");
+let URL = 'http://192.168.1.188:3000/';
+let usersList = document.getElementById("usersList");
 let country_Id;
 let state_Id;
-document.addEventListener("DOMContentLoaded", getCountry(url + 'countries', selectCountry));
+let State;
+// let StatesArr;
+
+
+// let CitiesArr;
+document.addEventListener("DOMContentLoaded", getUsersList(URL + 'users', usersList));
+// document.addEventListener("DOMContentLoaded", getStates(url + 'states'));
+// document.addEventListener("DOMContentLoaded", getCities(url + 'cities'));
+
+
+
+// async function getCountries(url) {
+//     let response = await fetch(url);
+//     CountriesArr = await response.json();
+//     return CountriesArr;
+// }
+
+// async function getStates(url) {
+//     let response = await fetch(url);
+//     StatesArr = await response.json();
+//     return StatesArr;
+// }
+// async function getCities(url) {
+//     let response = await fetch(url);
+//     CitiesArr = await response.json();
+//     return CitiesArr;
+// }
+
+document.addEventListener("DOMContentLoaded", getCountry(URL + 'countries', selectCountry));
 async function getCountry(url, select) {
     let response = await fetch(url);
-    let data = await response.json();
+    data = await response.json();
     data.forEach(item => {
         let option = document.createElement('option');
         option.innerText = item.name;
@@ -25,14 +53,14 @@ selectCountry.onchange = function getCountryId() {
     let indexSelected = selectCountry.selectedIndex;
     let selectedOption = selectCountry.querySelectorAll('option')[indexSelected];
     country_Id = selectedOption.getAttribute('data-id');
-    getState(url + 'states', selectState, country_Id);
+    getState(URL + 'states', selectState, country_Id);
     console.log(country_Id + 'counrty iD');
     return country_Id;
 }
 
 async function getState(url, select, country_Id) {
     let response = await fetch(url);
-    let data = await response.json();
+    data = await response.json();
     data.forEach(item => {
         let option = document.createElement('option');
         if (item.country_id == country_Id) {
@@ -43,20 +71,24 @@ async function getState(url, select, country_Id) {
 
 
     });
+    return data;
 }
 selectState.onchange = function getStateId() {
     refreshData(selectCity);
     let indexSelected = selectState.selectedIndex;
-    let selectedOption = selectState.querySelectorAll('option')[indexSelected];
-    state_Id = selectedOption.getAttribute('data-id');
-    getCity(url + 'cities', selectCity, state_Id);
+    State = selectState.querySelectorAll('option')[indexSelected];
+    state_Id = State.getAttribute('data-id');
+    getCity(URL + 'cities', selectCity, state_Id);
     console.log("Its  state id" + state_Id);
+    console.log(State);
     return state_Id;
 
 }
+
+
 async function getCity(url, select, state_Id) {
     let response = await fetch(url);
-    let data = await response.json();
+    data = await response.json();
     data.forEach(item => {
         let option = document.createElement('option');
         if (item.id == state_Id) {
@@ -65,9 +97,30 @@ async function getCity(url, select, state_Id) {
             select.appendChild(option);
         }
     });
+    return data;
 }
 
 function refreshData(select) {
     for (var i = select.length; i >= 1; i--)
         select.remove(i);
+}
+async function getUsersList(url, list) {
+    let response = await fetch(url);
+    let data = await response.json();
+    data.forEach(item => {
+
+        let person = document.createElement('div');
+        person.classList.add('person');
+        let info = `
+           <h2>
+               ${item.name}
+           </h2>
+           <p class="mail">${item.email}</p>
+           <p class="number">${item.phone_number}</p>
+           `;
+        person.innerHTML = info;
+        list.appendChild(person);
+    });
+
+
 }

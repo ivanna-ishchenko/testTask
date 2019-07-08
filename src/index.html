@@ -17,34 +17,31 @@
                 <form>
                     <div class="form-group">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+                        <input type="text" pattern="[A-Za-z ]{1,32}" required class="form-control" id="inputName" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" id="inputEmail" placeholder="Enter email">
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
+
                     <div class="form-group">
                         <label for="formControlSelect1">Country</label>
-                        <select class="form-control" id="formControlSelect1">  <option value="" disabled selected >Select country</option>
+                        <select class="form-control" required id="formControlSelect1">  <option value="" disabled selected >Select country</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="formControlSelect2">State</label>
-                        <select class="form-control" id="formControlSelect2"><option value="" disabled >Select State</option>
+                        <select class="form-control" required id="formControlSelect2"><option value="" disabled>Select State</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="formControlSelect3">City</label>
-                        <select class="form-control" id="formControlSelect3"><option value="" disabled  >Select City</option>
+                        <select class="form-control" required id="formControlSelect3"><option value="" disabled  >Select City</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="text" class="form-control" id="inputPhone" placeholder="Enter number">
+                        <input type="text" pattern="[0-9]{3,13}" required class="form-control" id="inputPhone" placeholder="Enter number">
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
@@ -52,11 +49,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Textarea">About me</label>
-                        <textarea class="form-control" id="Textarea" rows="3"></textarea>
+                        <textarea max-length="500" class="form-control" id="Textarea" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <div class="col-3">
+            <div class="col-3" id="usersList">
 
 
             </div>
@@ -64,6 +61,7 @@
 
 
     </div>
+
     <script src="./index.js"></script>
 </body>
 
