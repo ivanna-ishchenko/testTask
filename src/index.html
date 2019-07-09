@@ -17,35 +17,35 @@
                 <form>
                     <div class="form-group">
                         <label for="inputName">Name</label>
-                        <input type="text" pattern="[A-Za-z ]{1,32}" required class="form-control" id="inputName" placeholder="Enter name">
+                        <input type="text" name='name' pattern="[A-Za-z ]{1,32}" required class="form-control" id="inputName" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="inputEmail">Email address</label>
-                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" id="inputEmail" placeholder="Enter email">
+                        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" id="inputEmail" placeholder="Enter email">
                     </div>
 
                     <div class="form-group">
                         <label for="formControlSelect1">Country</label>
-                        <select class="form-control" required id="formControlSelect1">  <option value="" disabled selected >Select country</option>
+                        <select class="form-control" name='country_id' required id="formControlSelect1">  <option value="" disabled selected >Select country</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="formControlSelect2">State</label>
-                        <select class="form-control" required id="formControlSelect2"><option value="" disabled>Select State</option>
+                        <select class="form-control" name='state_id' required id="formControlSelect2"><option value="" disabled>Select State</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="formControlSelect3">City</label>
-                        <select class="form-control" required id="formControlSelect3"><option value="" disabled  >Select City</option>
+                        <select class="form-control" name='city_id' required id="formControlSelect3"><option value="" disabled  >Select City</option>
                             </select>
                     </div>
                     <div class="form-group">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="text" pattern="[0-9]{3,13}" required class="form-control" id="inputPhone" placeholder="Enter number">
+                        <input type="text" name="phone_numbers" pattern="[0-9]{3,13}" required class="form-control" id="inputPhone" placeholder="Enter number">
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress">
+                        <input type="text" name="address" class="form-control" id="inputAddress">
                     </div>
                     <div class="form-group">
                         <label for="Textarea">About me</label>

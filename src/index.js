@@ -6,6 +6,7 @@ let usersList = document.getElementById("usersList");
 let country_Id;
 let state_Id;
 let State;
+
 // let StatesArr;
 
 
@@ -99,28 +100,66 @@ async function getCity(url, select, state_Id) {
     });
     return data;
 }
+///
 
+////
 function refreshData(select) {
     for (var i = select.length; i >= 1; i--)
         select.remove(i);
 }
-async function getUsersList(url, list) {
-    let response = await fetch(url);
-    let data = await response.json();
-    data.forEach(item => {
+let city;
 
-        let person = document.createElement('div');
-        person.classList.add('person');
-        let info = `
-           <h2>
-               ${item.name}
-           </h2>
-           <p class="mail">${item.email}</p>
-           <p class="number">${item.phone_number}</p>
-           `;
-        person.innerHTML = info;
-        list.appendChild(person);
-    });
+function getUsersList(url, list) {
+    fetch(url)
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            data.forEach(item => {
 
-
+                console.log(item.city_id);
+                fetch('http://192.168.1.188:3000/cities/' + item.city_id)
+                    .then(function(res) {
+                        return res.json();
+                    })
+                    .then(function(data) {
+                        console.log(data.name);
+                       city = ` <p class="number">${data.name}</p>`;
+                       let person = document.createElement('div');
+                person.classList.add('person');
+                let info = `
+               <h2>
+                   ${item.name}
+               </h2>
+               <p class="mail">${item.email}</p>
+               <p class="number">${item.phone_number}</p>
+               <p class="number">${city}</p>
+             
+               `;
+                person.innerHTML = info;
+              
+                list.appendChild(person);
+          
+            }).catch(function(err) {
+                        console.log(err);
+                    });
+             
+                
+        
+    })
+});
 }
+
+
+// fetch(URL + 'users', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+
+//         name: "John",
+//         email: "john@example.com"
+
+//     })
+// });
