@@ -16,31 +16,31 @@
                 <h1>This is form</h1>
                 <form id="form">
                     <div class="form-group ">
-                        <label for="inputName ">Name</label>
+                        <label for="inputName" class="required"  >Name</label>
                         <input type="text " name='name' pattern="[A-Za-z ]{1,32}" required class="form-control " id="inputName " placeholder="Enter name ">
                     </div>
                     <div class="form-group ">
-                        <label for="inputEmail ">Email address</label>
+                        <label  class="required" for="inputEmail ">Email address</label>
                         <input type="email " name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control " id="inputEmail " placeholder="Enter email ">
                     </div>
 
                     <div class="form-group ">
-                        <label for="formControlSelect1 ">Country</label>
+                        <label  class="required" for="formControlSelect1 ">Country</label>
                         <select class="form-control " name='country_id' required id="formControlSelect1">  <option value=" " disabled selected >Select country</option>
                             </select>
                     </div>
                     <div class="form-group ">
-                        <label for="formControlSelect2 ">State</label>
+                        <label class="required" for="formControlSelect2 ">State</label>
                         <select class="form-control " name='state_id' required id="formControlSelect2"><option value=" " disabled>Select State</option>
                             </select>
                     </div>
                     <div class="form-group">
-                        <label for="formControlSelect3 ">City</label>
+                        <label class="required" for="formControlSelect3 ">City</label>
                         <select class="form-control " name='city_id' required id="formControlSelect3"><option value=" " disabled  >Select City</option>
                             </select>
                     </div>
                     <div class="form-group ">
-                        <label for="inputPhone ">Phone Number</label>
+                        <label class="required" for="inputPhone ">Phone Number</label>
                         <input type="text " name="phone_number" pattern="[0-9]{3,13}" required class="form-control " id="inputPhone " placeholder="Enter number ">
                     </div>
                     <div class="form-group ">
