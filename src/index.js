@@ -1,6 +1,4 @@
 let selectCountry = document.getElementById("formControlSelect1");
-let adress = document.getElementById("address");
-let about_me = document.getElementById("about_me");
 let selectState = document.getElementById("formControlSelect2");
 let selectCity = document.getElementById("formControlSelect3");
 let URL = 'http://192.168.1.188:3000/';
@@ -13,8 +11,6 @@ let place;
 let CurentCity;
 let CurentState;
 let CurentCounrty;
-adress.defaultValue = null;
-about_me.defaultValue = null;
 document.addEventListener("DOMContentLoaded", getUsersList(`${URL}users`, usersList));
 document.addEventListener("DOMContentLoaded", getCountry(`${URL}countries`, selectCountry));
 async function getCountry(url, select) {
@@ -59,7 +55,6 @@ selectState.onchange = function getStateId() {
     state_Id = State.getAttribute('data-id');
     getCity(`${URL}cities`, selectCity, state_Id);
     return state_Id;
-
 }
 async function getCity(url, select, state_Id) {
     let response = await fetch(url);
@@ -131,12 +126,31 @@ function getUsersList(url, list) {
                <p class="date">${date}</p>
                `;
                         person.innerHTML = info;
-
                         list.appendChild(person);
-
                     }).catch(function(err) {
                         console.log(err);
                     });
             })
         });
+}
+submitBtn.onclick = function handleSubmit() {
+
+    let form = Array.from(document.forms[0]);
+
+    let dataForm = new Object();
+    form.forEach(e => {
+        e.value == '' ? e.value = null : e.value = e.value;
+        dataForm[e.name] = e.value;
+        console.log(e.name);
+
+    });
+    dataForm["createdAt"] = Date.now();
+    console.log(dataForm);
+    fetch('http://192.168.1.188:3000/users', {
+        method: 'POST',
+        headers: new Headers({ 'content-type': 'application/json' }),
+        mode: 'cors',
+        body: JSON.stringify(dataForm)
+    });
+    document.location.reload();
 }
