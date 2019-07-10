@@ -1,7 +1,7 @@
 let selectCountry = document.getElementById("formControlSelect1");
 let selectState = document.getElementById("formControlSelect2");
 let selectCity = document.getElementById("formControlSelect3");
-let URL = 'http://192.168.1.188:3000/';
+let URL = 'http://localhost:3000/';
 let usersList = document.getElementById("usersList");
 let submitBtn = document.getElementById('submitBtn');
 let country_Id;
@@ -105,9 +105,9 @@ function getUsersList(url, list) {
         })
         .then(function(data) {
             data.forEach(item => {
-                GetStateById(`http://192.168.1.188:3000/states/${item.state_id}`);
-                GetCountryById(`http://192.168.1.188:3000/countries/${item.country_id}`);
-                fetch(`http://192.168.1.188:3000/cities/${item.city_id}`)
+                GetStateById(`${URL}states/${item.state_id}`);
+                GetCountryById(`${URL}countries/${item.country_id}`);
+                fetch(`${URL}cities/${item.city_id}`)
                     .then(function(res) {
                         return res.json();
                     })
@@ -117,8 +117,8 @@ function getUsersList(url, list) {
                         let person = document.createElement('div');
                         person.classList.add('person');
                         let info = `
-               <h2>
-                   ${item.name}
+                      <h2> 
+              ${item.name}
                </h2>
                <p class="mail">${item.email}</p>
                <p class="phone">${item.phone_number}</p>
@@ -146,7 +146,7 @@ submitBtn.onclick = function handleSubmit() {
     });
     dataForm["createdAt"] = Date.now();
     console.log(dataForm);
-    fetch('http://192.168.1.188:3000/users', {
+    fetch(`${URL}users`, {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         mode: 'cors',
