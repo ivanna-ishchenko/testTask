@@ -1,0 +1,47 @@
+input,
+select {
+    border: none!important;
+    border-bottom: 2px solid lightskyblue!important;
+    border-radius: 5px!important;
+}
+
+.submitBtn:hover {
+    background-color: lightskyblue;
+    color: white;
+    transition: 0.5s;
+}
+
+button {
+    border: 2px solid lightskyblue!important;
+}
+
+button {
+    width: 100px;
+    background-color: white!important;
+    float: right;
+    color: lightskyblue!important;
+    border-radius: 0!important;
+}
+
+h1 {
+    color: lightskyblue;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 0.5rem;
+    color: lightslategrey;
+}
+
+h2 {
+    color: dimgray;
+    font-style: oblique;
+    text-decoration-color: aqua;
+    text-align: center;
+    border-bottom: 2px solid lightskyblue!important;
+    border-radius: 5px!important;
+}
+
+.person {
+    margin-bottom: 1.5625rem;
+}
