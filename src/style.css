@@ -4,6 +4,10 @@ select {
     border-bottom: 2px solid lightskyblue!important;
     border-radius: 5px!important;
 }
+.required::after{
+content:"*";
+color:red;
+}
 
 .submitBtn:hover {
     background-color: lightskyblue;
