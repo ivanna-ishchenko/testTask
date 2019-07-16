@@ -136,21 +136,20 @@ function getUsersList(url, list) {
 submitBtn.onclick = function handleSubmit() {
 
     let form = Array.from(document.forms[0]);
-
     let dataForm = new Object();
     form.forEach(e => {
         e.value == '' ? e.value = null : e.value = e.value;
         dataForm[e.name] = e.value;
-        console.log(e.name);
 
     });
-    dataForm["createdAt"] = Date.now();
-    console.log(dataForm);
-    fetch(`${URL}users`, {
-        method: 'POST',
-        headers: new Headers({ 'content-type': 'application/json' }),
-        mode: 'cors',
-        body: JSON.stringify(dataForm)
-    });
-    document.location.reload();
+    if (!form.filter(el => !el.checkValidity()).length) {
+        dataForm["createdAt"] = Date.now();
+        fetch(`${URL}users`, {
+            method: 'POST',
+            headers: new Headers({ 'content-type': 'application/json' }),
+            mode: 'cors',
+            body: JSON.stringify(dataForm)
+        });
+    }
+
 }
